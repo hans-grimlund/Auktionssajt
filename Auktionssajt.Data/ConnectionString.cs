@@ -1,3 +1,5 @@
+using Auktionssajt.Data;
+
 namespace Auktionssajt.Data
 {
     public static class ConnectionString
