@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auktionssajt.Core", "Auktio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auktionssajt.Domain", "Auktionssajt.Domain\Auktionssajt.Domain.csproj", "{C5B50BC6-810A-493A-A909-7E4DCD0825E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auktionssajt.Datat", "Auktionssajt.Datat\Auktionssajt.Datat.csproj", "{4400B3C7-4E27-4E12-9DA7-25917F2C8EF5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auktionssajt.Data", "Auktionssajt.Data\Auktionssajt.Data.csproj", "{4400B3C7-4E27-4E12-9DA7-25917F2C8EF5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
