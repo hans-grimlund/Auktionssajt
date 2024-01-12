@@ -1,0 +1,41 @@
+Uppgiften handlar om att skapa en lösning till företaget Jensen Auktioner som
+arbetar med online auktioner på nätet. Alla uppgifter sparas i en databas som är
+tillgänglig via ett ASP.NET web api.
+
+Krav för att uppgiften skall bli godkänd:
+
+    - Lösningen skall hantera auktioner, användare och bud.
+    All data måste kunna hämtas via web api anrop och lagras i en databas.
+    Det skall gå att skapa och uppdatera en användare samt logga in.
+    Är man inte inloggad skall man bara kunna läsa data inte lägga bud eller skapa/uppdatera auktioner.
+    En användare har ett användarnamn och ett lösenord.
+
+    - En auktion har en titel, beskrivning, ett pris och start- och slutdatum samt vilken användare som skapat den. Den är öppen
+    om slutdatumet är senare än aktuellt datum och klockslag.
+
+    - Det skall gå att välja en auktion och sedan se alla bud som finns för den
+    auktionen. Är auktionen fortfarande öppen kan användaren lägga ett bud.
+    Detta måste vara högre än det tidigare högsta budet, annars skall api:et
+    meddela att budet är för lågt. Den användare som skapat auktionen kan inte
+    själv lägga bud på den. Ett bud har ett pris och är kopplad till en användare.
+
+    - Väljs en auktion som inte är öppen skall bara information om auktionen visas
+    samt det högsta vinnande budet. Det skall inte visas någon budhistorik och det
+    skall inte gå att lägga bud. Det skall även att gå att söka på auktioner och då
+    visas även auktioner som inte är aktuella dvs avslutade.
+
+    - Finns det inga bud på en auktion skall den kunna tas bort. Det skall även gå att
+    uppdatera auktionen men inte ändra priset om det redan finns bud. Det går
+    även att ångra dvs ta bort ett bud om auktionen inte är avslutad.
+
+    - Ert projekt skall drivas enligt de riktlinjer vi går igenom på lektionerna och ni
+    måste arbeta med versionshantering av all kod. Ni skall använda Github för att
+    lagra och versionshantera kod. Ni skall även göra en planering och arbeta med
+    aktiviteter via Trello. Swagger skall användas för att dokumentera lösningen.
+    
+    - De dagar som är schemalagda kommer vi att ha dagliga avstämningsmöten
+    där vi tittar på hur ni arbetar och hur arbetet går. Alla skall närvara på dessa
+    möten och om man inte kan vara med måste detta meddelas innan.
+
+    - Det måste finnas minst tre enhetstester kopplade till projektet som testar
+    lämplig funktionalitet.
