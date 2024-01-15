@@ -10,4 +10,8 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0"/>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.1"/>
   </ItemGroup>
+    <ItemGroup>
+    <ProjectReference Include="..\Auktionssajt.Domain\Auktionssajt.Domain.csproj"/>
+    <ProjectReference Include="..\Auktionssajt.Core\Auktionssajt.Core.csproj"/>
+  </ItemGroup>
 </Project>
