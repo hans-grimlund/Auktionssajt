@@ -52,7 +52,7 @@ namespace Auktionssajt.Data.Repository
             {
                 var parameters = new DynamicParameters();
                 parameters.Add("@UserName", user.UserName);
-                parameters.Add("@Psw", user.Psw);
+                parameters.Add("@Psw", user.UserPsw);
 
                 db.Execute("InsertAdvertisement", parameters, commandType: CommandType.StoredProcedure);
             }

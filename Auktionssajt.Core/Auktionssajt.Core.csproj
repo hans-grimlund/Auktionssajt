@@ -5,9 +5,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3"/>
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Auktionssajt.Domain\Auktionssajt.Domain.csproj"/>
+    <ProjectReference Include="..\Auktionssajt.Data\Auktionssajt.Data.csproj" />
+    <ProjectReference Include="..\Auktionssajt.Domain\Auktionssajt.Domain.csproj" />
   </ItemGroup>
 </Project>
