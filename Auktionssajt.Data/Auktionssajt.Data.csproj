@@ -5,8 +5,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Dapper" Version="2.1.28"/>
-    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.4"/>
+    <PackageReference Include="Dapper" Version="2.1.28" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.4" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Auktionssajt.Domain\Auktionssajt.Domain.csproj"/>
