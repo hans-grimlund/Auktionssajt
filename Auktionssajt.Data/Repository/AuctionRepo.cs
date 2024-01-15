@@ -9,7 +9,7 @@ namespace Auktionssajt.Data.Repository
     {
         public void NewAuction(AuctionEntity auction)
         {
-            SqlConnection conn = new(ConnectionString.str);
+            using SqlConnection conn = new(ConnectionString.str);
 
             DynamicParameters parameters = new();
             parameters.Add("Title", auction.Title);
@@ -22,7 +22,7 @@ namespace Auktionssajt.Data.Repository
 
         public void EditAuction(AuctionEntity auction)
         {
-            SqlConnection conn = new(ConnectionString.str);
+            using SqlConnection conn = new(ConnectionString.str);
 
             DynamicParameters parameters = new();
             parameters.Add("Id", auction.Id);
@@ -36,7 +36,7 @@ namespace Auktionssajt.Data.Repository
 
         public void DeleteAuction(int id)
         {
-            SqlConnection conn = new(ConnectionString.str);
+            using SqlConnection conn = new(ConnectionString.str);
 
             DynamicParameters parameters = new();
             parameters.Add("Id", id);
@@ -46,7 +46,7 @@ namespace Auktionssajt.Data.Repository
 
         AuctionEntity IAuctionRepo.GetAuction(int id)
         {
-            SqlConnection conn = new(ConnectionString.str);
+            using SqlConnection conn = new(ConnectionString.str);
 
             DynamicParameters parameters = new();
             parameters.Add("Id", id);
@@ -56,7 +56,7 @@ namespace Auktionssajt.Data.Repository
 
         public List<AuctionEntity> GetAuctionsFromUser(int id)
         {
-            SqlConnection conn = new(ConnectionString.str);
+            using SqlConnection conn = new(ConnectionString.str);
 
             DynamicParameters parameters = new();
             parameters.Add("Id", id);
@@ -66,7 +66,7 @@ namespace Auktionssajt.Data.Repository
 
         public List<AuctionEntity> GetAuctionsFromUser(string username)
         {
-            SqlConnection conn = new(ConnectionString.str);
+            using SqlConnection conn = new(ConnectionString.str);
 
             DynamicParameters parameters = new();
             parameters.Add("Username", username);
@@ -76,7 +76,7 @@ namespace Auktionssajt.Data.Repository
 
         public List<AuctionEntity> GetAllAuctions()
         {
-            SqlConnection conn = new(ConnectionString.str);
+            using SqlConnection conn = new(ConnectionString.str);
 
             return conn.Query<AuctionEntity>("GetAllAuctions", commandType: System.Data.CommandType.Text).ToList();
         }
