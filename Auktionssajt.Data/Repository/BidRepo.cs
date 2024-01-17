@@ -20,11 +20,23 @@ namespace Auktionssajt.Data.Repository
             }
         }
 
-        public List<BidEntity> GetBids(int id)
+        public List<BidEntity> GetBidsFromAuction(int id)
         {
             using (IDbConnection db = new SqlConnection(ConnectionString.str))
             {
                 string sql = "GetBidsFromAuctionID";
+
+                var model = db.Query<BidEntity>(sql, new { @id = id }, commandType: CommandType.StoredProcedure).ToList();
+
+                return model;
+            }
+        }
+
+        public List<BidEntity> GetBidsFromUser(int id)
+        {
+            using (IDbConnection db = new SqlConnection(ConnectionString.str))
+            {
+                string sql = "GetBidsFromUserID";
 
                 var model = db.Query<BidEntity>(sql, new { @id = id }, commandType: CommandType.StoredProcedure).ToList();
 
