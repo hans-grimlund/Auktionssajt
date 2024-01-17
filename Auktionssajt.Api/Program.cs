@@ -1,4 +1,7 @@
 ﻿
+using Auktionssajt.Data.Interfaces;
+using Auktionssajt.Data.Repository;
+
 namespace Auktionssajt.Api;
 
 public class Program
