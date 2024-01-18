@@ -7,6 +7,29 @@ namespace Auktionssajt.Core.Services
 {
     public class MappingService : IMappingService
     {
+        public AuctionEntity AuctionDTOToAuctionEntity(AuctionDTO DTO)
+        {
+            return new AuctionEntity()
+            {
+                Id = DTO.Id,
+                Title = DTO.Title,
+                Description = DTO.Description,
+                User = 1,
+                StartDate = DTO.StartDate,
+                EndDate = DTO.EndDate
+            };
+        }
+
+        public List<AuctionEntity> AuctionDTOToAuctionEntity(List<AuctionDTO> DTOs)
+        {
+            List<AuctionEntity> entities = [];
+            foreach (var DTO in DTOs)
+            {
+                entities.Add(AuctionDTOToAuctionEntity(DTO));
+            }
+            return entities;
+        }
+
         public AuctionDTO AuctionEntityToAuctionDTO(AuctionEntity entity)
         {
             return new AuctionDTO()
@@ -25,7 +48,15 @@ namespace Auktionssajt.Core.Services
             return DTOs;
         }
 
-        public AuctionEntity NewAuctionModelToAuctionEntity(NewAuctionModel model)
+        public AuctionEntity EditAuctionModelToAuctionEntity(EditAuctionModel model)
+        {
+            return new AuctionEntity()
+            {
+                // TODO Code this
+            };
+        }
+
+        public AuctionEntity NewAuctionModelToAuctionEntity(NewAuctionModel model, int userId = 0)
         {
             return new AuctionEntity()
             {

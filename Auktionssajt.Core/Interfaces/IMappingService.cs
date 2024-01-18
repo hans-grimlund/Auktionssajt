@@ -9,8 +9,11 @@ namespace Auktionssajt.Core.Interfaces
         UserEntity NewUserModelToUserEntity(NewUserModel model);
         UserDTO UserEntityToUserDTO(UserEntity entity);
         List<UserDTO> UserEntityToUserDTO(List<UserEntity> entities);
-        AuctionEntity NewAuctionModelToAuctionEntity(NewAuctionModel model);
+        AuctionEntity NewAuctionModelToAuctionEntity(NewAuctionModel model, int userId = 0);
         AuctionDTO AuctionEntityToAuctionDTO(AuctionEntity entity);
         List<AuctionDTO> AuctionEntityToAuctionDTO(List<AuctionEntity> entities);
+        AuctionEntity AuctionDTOToAuctionEntity(AuctionDTO DTO);
+        List<AuctionEntity> AuctionDTOToAuctionEntity(List<AuctionDTO> DTOs);
+        AuctionEntity EditAuctionModelToAuctionEntity(EditAuctionModel model);
     }
 }
