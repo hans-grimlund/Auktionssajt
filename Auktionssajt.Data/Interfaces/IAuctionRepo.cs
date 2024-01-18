@@ -6,6 +6,7 @@ namespace Auktionssajt.Data.Interfaces
         void NewAuction(AuctionEntity auction);
         void EditAuction(AuctionEntity auction);
         void DeleteAuction(int id);
+        void CloseAuction(int id);
         AuctionEntity GetAuction(int id);
         List<AuctionEntity> FindAuction(string searchterm);
         List<AuctionEntity> GetAllAuctions();

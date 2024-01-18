@@ -7,8 +7,8 @@ namespace Auktionssajt.Core.Interfaces
     public interface IAuctionService
     {
         Status CreateAuction(NewAuctionModel auction, int userId);
-        Status EditAuction(AuctionDTO auction, int userId);
-        Status CloseAuction(int id);
+        Status EditAuction(EditAuctionModel auction, int userId);
+        Status CloseAuction(int auctionId, int userId);
         AuctionDTO GetAuction(int id);
         List<AuctionDTO> GetAllAuctions();
         List<AuctionDTO> FindAuction(string searchterm);

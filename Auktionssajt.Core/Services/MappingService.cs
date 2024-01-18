@@ -1,4 +1,5 @@
 using Auktionssajt.Core.Interfaces;
+using Auktionssajt.Data.Repository;
 using Auktionssajt.Domain.DTOs;
 using Auktionssajt.Domain.Entities;
 using Auktionssajt.Domain.Models;
@@ -7,6 +8,7 @@ namespace Auktionssajt.Core.Services
 {
     public class MappingService : IMappingService
     {
+        private readonly UserRepo _userRepo = new();
         public AuctionEntity AuctionDTOToAuctionEntity(AuctionDTO DTO)
         {
             return new AuctionEntity()
@@ -14,9 +16,10 @@ namespace Auktionssajt.Core.Services
                 Id = DTO.Id,
                 Title = DTO.Title,
                 Description = DTO.Description,
-                User = 1,
-                StartDate = DTO.StartDate,
-                EndDate = DTO.EndDate
+                UserId = _userRepo.GetUser(DTO.Username).UserID,
+                StartingPrice = DTO.StartingPrice,
+                StartTime = DTO.StartTime,
+                EndTime = DTO.EndTime
             };
         }
 
@@ -34,7 +37,13 @@ namespace Auktionssajt.Core.Services
         {
             return new AuctionDTO()
             {
-                // TODO Code this
+                Id = entity.Id,
+                Title = entity.Title,
+                Description = entity.Description,
+                Username = _userRepo.GetUser(entity.UserId).UserName,
+                StartingPrice = entity.StartingPrice,
+                StartTime = entity.StartTime,
+                EndTime = entity.EndTime
             };
         }
 
@@ -52,7 +61,10 @@ namespace Auktionssajt.Core.Services
         {
             return new AuctionEntity()
             {
-                // TODO Code this
+                Id = model.Id,
+                Title = model.Title,
+                Description = model.Description,
+                StartingPrice = model.StartingPrice
             };
         }
 
@@ -60,7 +72,10 @@ namespace Auktionssajt.Core.Services
         {
             return new AuctionEntity()
             {
-                // TODO Code this
+                Title = model.Title,
+                Description = model.Description,
+                UserId = userId,
+                StartingPrice = model.StartingPrice
             };
         }
 

@@ -6,12 +6,17 @@ namespace Auktionssajt.Core.Services
 {
     public class ValidationService : IValidationService
     {
-        public Status ValidateNewAuction(NewAuctionModel auction)
+        public Status ValidateAuction(EditAuctionModel auction)
         {
             return Status.Ok;
         }
 
-        public Status ValidateNewAuction(AuctionDTO auction)
+        public Status ValidateAuction(NewAuctionModel auction)
+        {
+            return Status.Ok;
+        }
+
+        public Status ValidateAuction(AuctionDTO auction)
         {
             return Status.Ok;
         }

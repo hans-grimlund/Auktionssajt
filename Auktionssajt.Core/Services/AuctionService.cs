@@ -12,43 +12,56 @@ namespace Auktionssajt.Core.Services
         private readonly AuctionRepo _auctionRepo = new();
         private readonly BidRepo _bidRepo = new();
 
-        public Status CloseAuction(int id)
-        {
-            throw new NotImplementedException();
-        }
 
         public Status CreateAuction(NewAuctionModel auction, int userId)
         {
-            var status = _validationService.ValidateNewAuction(auction);
-            if ( status != Status.Ok)
+            var status = _validationService.ValidateAuction(auction);
+            if (status != Status.Ok)
                 return status;
             
             var entity = _mappingService.NewAuctionModelToAuctionEntity(auction, userId);
-            _auctionRepo.NewAuction(entity);
+            entity.EndTime = DateTime.Now.AddDays(7);
 
+            _auctionRepo.NewAuction(entity);
             return Status.Ok;
         }
 
-        public Status EditAuction(AuctionDTO auction, int userId)
+        public Status EditAuction(EditAuctionModel auction, int userId)
         {
             var oldAuction = _auctionRepo.GetAuction(auction.Id);
             if (oldAuction == null)
                 return Status.NotFound;
             
-            if (oldAuction.User != userId)
+            if (oldAuction.UserId != userId)
                 return Status.Unauthorized;
 
-            if (oldAuction.Status == "Ended")
-                return Status.Unauthorized;
+            if (DateTime.Now > oldAuction.EndTime)
+                return Status.BadRequest;
             
             if (_bidRepo.GetBidsFromAuction(auction.Id).Count > 0)
-                return Status.Unauthorized;
+                auction.StartingPrice = oldAuction.StartingPrice;
 
-            var status = _validationService.ValidateNewAuction(auction);
+            var status = _validationService.ValidateAuction(auction);
             if (status != Status.Ok)
                 return status;
             
-            _auctionRepo.EditAuction(_mappingService.AuctionDTOToAuctionEntity(auction));
+            _auctionRepo.EditAuction(_mappingService.EditAuctionModelToAuctionEntity(auction));
+            return Status.Ok;
+        }
+
+        public Status CloseAuction(int auctionId, int userId)
+        {
+            var auction = _auctionRepo.GetAuction(auctionId);
+            if (auction.UserId != userId)
+                return Status.Unauthorized;
+            
+            if (DateTime.Now > auction.EndTime)
+                return Status.BadRequest;
+
+            if (_bidRepo.GetBidsFromAuction(auctionId).Count > 0)
+                return Status.Forbidden;
+
+            _auctionRepo.CloseAuction(auctionId);
             return Status.Ok;
         }
 

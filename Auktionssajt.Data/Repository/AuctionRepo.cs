@@ -12,9 +12,12 @@ namespace Auktionssajt.Data.Repository
             using SqlConnection conn = new(ConnectionString.str);
 
             DynamicParameters parameters = new();
-            parameters.Add("Title", auction.Title);
-            parameters.Add("Description", auction.Description);
-            parameters.Add("User", auction.User);
+            parameters.Add("@Title", auction.Title);
+            parameters.Add("@Description", auction.Description);
+            parameters.Add("@UserId", auction.UserId);
+            parameters.Add("@StartingPrice", auction.StartingPrice);
+            parameters.Add("@StartTime", DateTime.Now);
+            parameters.Add("@EndTime", auction.EndTime);
 
             conn.Execute("InsertAuction", parameters, commandType: System.Data.CommandType.Text);
         }
@@ -24,10 +27,11 @@ namespace Auktionssajt.Data.Repository
             using SqlConnection conn = new(ConnectionString.str);
 
             DynamicParameters parameters = new();
-            parameters.Add("Id", auction.Id);
-            parameters.Add("Title", auction.Title);
-            parameters.Add("Description", auction.Description);
-            parameters.Add("User", auction.User);
+            parameters.Add("@Id", auction.Id);
+            parameters.Add("@Title", auction.Title);
+            parameters.Add("@Description", auction.Description);
+            parameters.Add("@UserId", auction.UserId);
+            parameters.Add("@StartingPrice", auction.StartingPrice);
 
             conn.Execute("UpdateAuction", parameters, commandType: System.Data.CommandType.Text);
         }
@@ -37,9 +41,20 @@ namespace Auktionssajt.Data.Repository
             using SqlConnection conn = new(ConnectionString.str);
 
             DynamicParameters parameters = new();
-            parameters.Add("Id", id);
+            parameters.Add("@Id", id);
 
             conn.Execute("DeleteAuction", parameters, commandType: System.Data.CommandType.Text);
+        }
+
+        public void CloseAuction(int id)
+        {
+            using SqlConnection conn = new(ConnectionString.str);
+
+            DynamicParameters parameters = new();
+            parameters.Add("@Id", id);
+            parameters.Add("@EndTime", DateTime.Now);
+
+            conn.Execute("CloseAuction", parameters, commandType: System.Data.CommandType.StoredProcedure);
         }
 
         public AuctionEntity GetAuction(int id)
@@ -47,7 +62,7 @@ namespace Auktionssajt.Data.Repository
             using SqlConnection conn = new(ConnectionString.str);
 
             DynamicParameters parameters = new();
-            parameters.Add("Id", id);
+            parameters.Add("@Id", id);
 
             return conn.QueryFirstOrDefault<AuctionEntity>("GetAuction", parameters, commandType: System.Data.CommandType.Text)!;
         }
@@ -67,7 +82,7 @@ namespace Auktionssajt.Data.Repository
             using SqlConnection conn = new(ConnectionString.str);
 
             DynamicParameters parameters = new();
-            parameters.Add("Id", id);
+            parameters.Add("@Id", id);
 
             return conn.Query<AuctionEntity>("GetAuctionsFromEmail", parameters, commandType: System.Data.CommandType.Text).ToList();
         }
@@ -77,7 +92,7 @@ namespace Auktionssajt.Data.Repository
             using SqlConnection conn = new(ConnectionString.str);
 
             DynamicParameters parameters = new();
-            parameters.Add("Username", username);
+            parameters.Add("@Username", username);
 
             return conn.Query<AuctionEntity>("GetAuctionsFromUsername", parameters, commandType: System.Data.CommandType.Text).ToList();
         }

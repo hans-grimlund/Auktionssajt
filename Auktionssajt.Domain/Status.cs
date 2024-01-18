@@ -6,6 +6,8 @@ namespace Auktionssajt.Domain.Models
         Ok,
         NotFound,
         Unauthorized,
+        BadRequest,
+        Forbidden,
         Error,
     }
 }

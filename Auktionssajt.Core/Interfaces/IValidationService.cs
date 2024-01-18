@@ -7,7 +7,8 @@ namespace Auktionssajt.Core.Interfaces
     {
         Status ValidateNewUser(NewUserModel user);
         Status ValidatePassword(string password);
-        Status ValidateNewAuction(NewAuctionModel auction);
-        Status ValidateNewAuction(AuctionDTO auction);
+        Status ValidateAuction(NewAuctionModel auction);
+        Status ValidateAuction(AuctionDTO auction);
+        Status ValidateAuction(EditAuctionModel auction);
     }
 }
