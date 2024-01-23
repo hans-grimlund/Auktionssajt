@@ -8,6 +8,12 @@ namespace Auktionssajt.Core.Services
     public class BidService : IBidService
     {
         private readonly BidRepo _bidRepo = new BidRepo();
+
+        public BidService(IBidRepo bidRepo)
+        {
+            _bidRepo = bidRepo;
+        }
+
         public void DeleteBid(int id)
         {
             _bidRepo.DeleteBid(id);
