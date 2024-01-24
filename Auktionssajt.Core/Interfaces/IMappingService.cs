@@ -15,5 +15,6 @@ namespace Auktionssajt.Core.Interfaces
         AuctionEntity AuctionDTOToAuctionEntity(AuctionDTO DTO);
         List<AuctionEntity> AuctionDTOToAuctionEntity(List<AuctionDTO> DTOs);
         AuctionEntity EditAuctionModelToAuctionEntity(EditAuctionModel model);
+        UserEntity UpdateUserModelToUserEntity(UpdateUserModel model);
     }
 }

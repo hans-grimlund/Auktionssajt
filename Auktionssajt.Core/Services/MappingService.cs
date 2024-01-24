@@ -87,6 +87,14 @@ namespace Auktionssajt.Core.Services
             };
         }
 
+        public UserEntity UpdateUserModelToUserEntity(UpdateUserModel model)
+        {
+            return new()
+            {
+
+            };
+        }
+
         public UserDTO UserEntityToUserDTO(UserEntity entity)
         {
             return new UserDTO()

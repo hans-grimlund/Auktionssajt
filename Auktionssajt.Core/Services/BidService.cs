@@ -9,11 +9,6 @@ namespace Auktionssajt.Core.Services
     {
         private readonly BidRepo _bidRepo = new BidRepo();
 
-        public BidService(IBidRepo bidRepo)
-        {
-            _bidRepo = bidRepo;
-        }
-
         public void DeleteBid(int id)
         {
             _bidRepo.DeleteBid(id);
@@ -21,7 +16,7 @@ namespace Auktionssajt.Core.Services
 
         public List<BidEntity> GetBidList(int id)
         {
-            var bids = _bidRepo.GetBids(id);
+            var bids = _bidRepo.GetBidsFromAuction(id);
             return bids;
         }
 

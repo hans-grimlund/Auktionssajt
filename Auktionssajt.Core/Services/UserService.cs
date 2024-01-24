@@ -3,8 +3,9 @@ using Auktionssajt.Data.Repository;
 using Auktionssajt.Domain.DTOs;
 using Auktionssajt.Domain.Entities;
 using Auktionssajt.Domain.Models;
-using Auktionssajt.Core.Services; // Make sure to include this namespace for MappingService
+using Auktionssajt.Core.Services; 
 using System.Collections.Generic;
+using Auktionssajt.Data.Interfaces;
 
 namespace Auktionssajt.Core.Services
 {
@@ -26,7 +27,8 @@ namespace Auktionssajt.Core.Services
 
         public List<UserDTO> GetAllUsers()
         {
-            return _userRepo.GetAllUsers();
+            var entities = _userRepo.GetAllUsers();
+            return _mappingService.UserEntityToUserDTO(entities); 
         }
 
         public UserDTO GetUser(int id)
@@ -43,14 +45,12 @@ namespace Auktionssajt.Core.Services
 
         public void NewUser(NewUserModel user)
         {
-            // Förutsatt att vi har en mappningsmetod för att konvertera NewUserModel till UserEntity vilket vi inte har än.
             var entity = _mappingService.NewUserModelToUserEntity(user);
             _userRepo.NewUser(entity);
         }
 
         public void UpdateUser(UpdateUserModel user)
         {
-            // samma sak här fast konvertera UpdateUserModel till UserEntity vilket vi inte heller har klart än
             var entity = _mappingService.UpdateUserModelToUserEntity(user);
             _userRepo.UpdateUser(entity);
         }
