@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Auktionssajt.Api.Controllers
 {
+
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class BidController : ControllerBase
@@ -19,7 +21,6 @@ namespace Auktionssajt.Api.Controllers
             _auctionService = auctionService;
         }
 
-        [Authorize]
         [HttpPost]
         public IActionResult InsertBid([FromQuery]NewBidModel newBid) 
         {
@@ -30,6 +31,28 @@ namespace Auktionssajt.Api.Controllers
             }
             return BadRequest(status.ToString());
         }
+        [HttpDelete]
+        public IActionResult DeleteBid(int bidID)
+        {
+            var status = _bidService.DeleteBid(bidID);
+            if (status == Status.Ok)
+            {
+                return Ok();
+            }
+            return BadRequest(status.ToString());
+        }
+        [HttpGet]
+        public IActionResult GetBidList(int auctionID)
+        {
+            var bids = _bidService.GetBidList(auctionID);
+            if (!bids.Any())
+            {
+            return Ok(bids);
+            }
+
+            return BadRequest(Status.BadRequest);
+        }
+
 
     }
 }

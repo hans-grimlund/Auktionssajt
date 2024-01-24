@@ -6,7 +6,7 @@ namespace Auktionssajt.Core.Interfaces
     public interface IBidService
     {
         Status InsertBid(NewBidModel newBid);
-        void DeleteBid(int id);
+        Status DeleteBid(int id);
         List<BidEntity> GetBidList(int id);
 
     }

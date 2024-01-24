@@ -11,9 +11,10 @@ namespace Auktionssajt.Core.Services
         private readonly BidRepo _bidRepo = new();
         private readonly MappingService _mappingService = new();
 
-        public void DeleteBid(int id)
+        public Status DeleteBid(int id)
         {
             _bidRepo.DeleteBid(id);
+            return Status.Ok;
         }
 
         public List<BidEntity> GetBidList(int id)
@@ -26,6 +27,8 @@ namespace Auktionssajt.Core.Services
         {
             var bidEntity = _mappingService.NewBidModeltoBidEntity(newBid);
             _bidRepo.InsertBid(bidEntity);
+
+            return Status.Ok;
         }
     }
 }
