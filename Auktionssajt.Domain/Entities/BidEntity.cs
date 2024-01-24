@@ -10,11 +10,11 @@ namespace Auktionssajt.Domain.Entities
         public int AuctionId { get; set; }
         public int UserId { get; set; }
 
-        public BidEntity(int bidId, decimal bidPrice, DateTime bidDateTime, int auctionId)
+        public BidEntity(int bidId, decimal bidPrice, int auctionId, DateTime? bidDateTime = null)
         {
             BidId = bidId;
             BidPrice = bidPrice;
-            BidDateTime = bidDateTime;
+            BidDateTime = bidDateTime ?? DateTime.MinValue;
             AuctionId = auctionId;
         }
     }

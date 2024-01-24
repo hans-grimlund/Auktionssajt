@@ -2,12 +2,14 @@ using Auktionssajt.Core.Interfaces;
 using Auktionssajt.Data.Interfaces;
 using Auktionssajt.Data.Repository;
 using Auktionssajt.Domain.Entities;
+using Auktionssajt.Domain.Models;
 
 namespace Auktionssajt.Core.Services
 {
     public class BidService : IBidService
     {
-        private readonly BidRepo _bidRepo = new BidRepo();
+        private readonly BidRepo _bidRepo = new();
+        private readonly MappingService _mappingService = new();
 
         public void DeleteBid(int id)
         {
@@ -20,9 +22,10 @@ namespace Auktionssajt.Core.Services
             return bids;
         }
 
-        public void InsertBid(BidEntity bid)
+        public Status InsertBid(NewBidModel newBid)
         {
-            _bidRepo.InsertBid(bid);
+            var bidEntity = _mappingService.NewBidModeltoBidEntity(newBid);
+            _bidRepo.InsertBid(bidEntity);
         }
     }
 }

@@ -79,6 +79,12 @@ namespace Auktionssajt.Core.Services
             };
         }
 
+        public BidEntity NewBidModeltoBidEntity(NewBidModel newBid)
+        {
+            return new BidEntity(0, newBid.BidPrice, auctionId: newBid.AuctionID);
+           
+        }
+
         public UserEntity NewUserModelToUserEntity(NewUserModel model)
         {
             return new UserEntity()
