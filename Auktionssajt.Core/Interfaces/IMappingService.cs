@@ -6,16 +6,17 @@ namespace Auktionssajt.Core.Interfaces
 {
     public interface IMappingService
     {
-        UserEntity NewUserModelToUserEntity(NewUserModel model);
-        UserDTO UserEntityToUserDTO(UserEntity entity);
-        List<UserDTO> UserEntityToUserDTO(List<UserEntity> entities);
-        AuctionEntity NewAuctionModelToAuctionEntity(NewAuctionModel model, int userId = 0);
-        AuctionDTO AuctionEntityToAuctionDTO(AuctionEntity entity);
-        List<AuctionDTO> AuctionEntityToAuctionDTO(List<AuctionEntity> entities);
-        AuctionEntity AuctionDTOToAuctionEntity(AuctionDTO DTO);
-        List<AuctionEntity> AuctionDTOToAuctionEntity(List<AuctionDTO> DTOs);
-        AuctionEntity EditAuctionModelToAuctionEntity(EditAuctionModel model);
-        UserEntity UpdateUserModelToUserEntity(UpdateUserModel model);
-        BidEntity NewBidModeltoBidEntity(NewBidModel newBid);
+        UserEntity ToUserEntity(NewUserModel model);
+        UserDTO ToUserDTO(UserEntity entity);
+        List<UserDTO> ToUserDTO(List<UserEntity> entities);
+        AuctionEntity ToAuctionEntity(NewAuctionModel model, int userId = 0);
+        AuctionDTO ToAuctionDTO(AuctionEntity entity);
+        List<AuctionDTO> ToAuctionDTO(List<AuctionEntity> entities);
+        AuctionEntity ToAuctionEntity(AuctionDTO DTO);
+        List<AuctionEntity> ToAuctionEntity(List<AuctionDTO> DTOs);
+        AuctionEntity ToAuctionEntity(EditAuctionModel model);
+        BidEntity ToBidEntity(NewBidModel newBid);
+        BidDTO ToBidDTO(BidEntity entity);
+        List<BidDTO> ToBidDTO(List<BidEntity> entities);
     }
 }

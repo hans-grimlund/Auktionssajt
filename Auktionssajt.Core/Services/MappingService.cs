@@ -9,9 +9,9 @@ namespace Auktionssajt.Core.Services
     public class MappingService : IMappingService
     {
         private readonly UserRepo _userRepo = new();
-        public AuctionEntity AuctionDTOToAuctionEntity(AuctionDTO DTO)
+        public AuctionEntity ToAuctionEntity(AuctionDTO DTO)
         {
-            return new AuctionEntity()
+            return new()
             {
                 Id = DTO.Id,
                 Title = DTO.Title,
@@ -23,19 +23,19 @@ namespace Auktionssajt.Core.Services
             };
         }
 
-        public List<AuctionEntity> AuctionDTOToAuctionEntity(List<AuctionDTO> DTOs)
+        public List<AuctionEntity> ToAuctionEntity(List<AuctionDTO> DTOs)
         {
             List<AuctionEntity> entities = [];
             foreach (var DTO in DTOs)
             {
-                entities.Add(AuctionDTOToAuctionEntity(DTO));
+                entities.Add(ToAuctionEntity(DTO));
             }
             return entities;
         }
 
-        public AuctionDTO AuctionEntityToAuctionDTO(AuctionEntity entity)
+        public AuctionDTO ToAuctionDTO(AuctionEntity entity)
         {
-            return new AuctionDTO()
+            return new()
             {
                 Id = entity.Id,
                 Title = entity.Title,
@@ -47,19 +47,19 @@ namespace Auktionssajt.Core.Services
             };
         }
 
-        public List<AuctionDTO> AuctionEntityToAuctionDTO(List<AuctionEntity> entities)
+        public List<AuctionDTO> ToAuctionDTO(List<AuctionEntity> entities)
         {
             List<AuctionDTO> DTOs = [];
             foreach (var entity in entities)
             {
-                DTOs.Add(AuctionEntityToAuctionDTO(entity));
+                DTOs.Add(ToAuctionDTO(entity));
             }
             return DTOs;
         }
 
-        public AuctionEntity EditAuctionModelToAuctionEntity(EditAuctionModel model)
+        public AuctionEntity ToAuctionEntity(EditAuctionModel model)
         {
-            return new AuctionEntity()
+            return new()
             {
                 Id = model.Id,
                 Title = model.Title,
@@ -68,9 +68,9 @@ namespace Auktionssajt.Core.Services
             };
         }
 
-        public AuctionEntity NewAuctionModelToAuctionEntity(NewAuctionModel model, int userId = 0)
+        public AuctionEntity ToAuctionEntity(NewAuctionModel model, int userId = 0)
         {
-            return new AuctionEntity()
+            return new()
             {
                 Title = model.Title,
                 Description = model.Description,
@@ -79,42 +79,52 @@ namespace Auktionssajt.Core.Services
             };
         }
 
-        public BidEntity NewBidModeltoBidEntity(NewBidModel newBid)
+        public BidEntity ToBidEntity(NewBidModel newBid)
         {
             return new BidEntity(0, newBid.BidPrice, auctionId: newBid.AuctionID);
            
         }
 
-        public UserEntity NewUserModelToUserEntity(NewUserModel model)
-        {
-            return new UserEntity()
-            {
-                // TODO Code this
-            };
-        }
-
-        public UserEntity UpdateUserModelToUserEntity(UpdateUserModel model)
+        public UserEntity ToUserEntity(NewUserModel model)
         {
             return new()
             {
-
+                // TODO Code this
             };
         }
 
-        public UserDTO UserEntityToUserDTO(UserEntity entity)
+        public UserDTO ToUserDTO(UserEntity entity)
         {
-            return new UserDTO()
+            return new()
             {
                 // TODO Code this
             };
         }
 
-        public List<UserDTO> UserEntityToUserDTO(List<UserEntity> entities)
+        public List<UserDTO> ToUserDTO(List<UserEntity> entities)
         {
             List<UserDTO> DTOs = [];
             foreach (var entity in entities)
             {
-                DTOs.Add(UserEntityToUserDTO(entity));
+                DTOs.Add(ToUserDTO(entity));
+            }
+            return DTOs;
+        }
+
+        public BidDTO ToBidDTO(BidEntity entity)
+        {
+            return new()
+            {
+                // TODO Code this
+            };
+        }
+
+        public List<BidDTO> ToBidDTO(List<BidEntity> entities)
+        {
+            List<BidDTO> DTOs = [];
+            foreach (var entity in entities)
+            {
+                DTOs.Add(ToBidDTO(entity));
             }
             return DTOs;
         }
