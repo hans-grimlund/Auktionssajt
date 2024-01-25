@@ -1,5 +1,4 @@
 using Auktionssajt.Core.Interfaces;
-using Auktionssajt.Domain.Entities;
 using Auktionssajt.Domain.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

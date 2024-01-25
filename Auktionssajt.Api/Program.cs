@@ -1,7 +1,4 @@
-﻿
-using Auktionssajt.Data.Interfaces;
-using Auktionssajt.Data.Repository;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
@@ -36,6 +33,7 @@ public class Program
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
+        builder.Services.AddScoped<IErrorhandler, Errorhandler>();
 
         var app = builder.Build();
 

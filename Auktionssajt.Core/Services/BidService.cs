@@ -1,5 +1,4 @@
 using Auktionssajt.Core.Interfaces;
-using Auktionssajt.Data.Interfaces;
 using Auktionssajt.Data.Repository;
 using Auktionssajt.Domain.Entities;
 using Auktionssajt.Domain.Models;

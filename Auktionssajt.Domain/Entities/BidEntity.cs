@@ -1,5 +1,3 @@
-using System.Data.SqlTypes;
-
 namespace Auktionssajt.Domain.Entities
 {
     public class BidEntity

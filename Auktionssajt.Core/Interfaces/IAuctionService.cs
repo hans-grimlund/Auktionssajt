@@ -1,5 +1,4 @@
 using Auktionssajt.Domain.DTOs;
-using Auktionssajt.Domain.Entities;
 using Auktionssajt.Domain.Models;
 
 namespace Auktionssajt.Core.Interfaces
