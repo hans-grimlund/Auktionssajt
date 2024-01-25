@@ -19,7 +19,7 @@ namespace Auktionssajt.Core.Services
             if (status != Status.Ok)
                 return status;
             
-            var entity = _mappingService.NewAuctionModelToAuctionEntity(auction, userId);
+            var entity = _mappingService.ToAuctionEntity(auction, userId);
             entity.EndTime = DateTime.Now.AddDays(7);
 
             _auctionRepo.NewAuction(entity);
@@ -45,7 +45,7 @@ namespace Auktionssajt.Core.Services
             if (status != Status.Ok)
                 return status;
             
-            _auctionRepo.EditAuction(_mappingService.EditAuctionModelToAuctionEntity(auction));
+            _auctionRepo.EditAuction(_mappingService.ToAuctionEntity(auction));
             return Status.Ok;
         }
 
@@ -70,7 +70,7 @@ namespace Auktionssajt.Core.Services
             var auction = _auctionRepo.GetAuction(id);
             if (auction == null)
                 return new();
-            return _mappingService.AuctionEntityToAuctionDTO(auction);
+            return _mappingService.ToAuctionDTO(auction);
         }
 
         public List<AuctionDTO> FindAuction(string searchterm)
@@ -81,7 +81,7 @@ namespace Auktionssajt.Core.Services
             var entities = _auctionRepo.FindAuction(searchterm);
             if (entities.Count < 1)
                 return [];
-            return _mappingService.AuctionEntityToAuctionDTO(entities);
+            return _mappingService.ToAuctionDTO(entities);
         }
 
         public List<AuctionDTO> GetAllAuctions()
@@ -89,7 +89,7 @@ namespace Auktionssajt.Core.Services
             var entities = _auctionRepo.GetAllAuctions();
             if (entities.Count < 1)
                 return [];
-            return _mappingService.AuctionEntityToAuctionDTO(entities);
+            return _mappingService.ToAuctionDTO(entities);
         }
 
         public List<AuctionDTO> GetAuctionsFromUser(int id)
@@ -97,7 +97,7 @@ namespace Auktionssajt.Core.Services
             var entities = _auctionRepo.GetAuctionsFromUser(id);
             if (entities.Count < 1)
                 return [];
-            return _mappingService.AuctionEntityToAuctionDTO(entities);
+            return _mappingService.ToAuctionDTO(entities);
         }
     }
 }

@@ -5,7 +5,7 @@ namespace Auktionssajt.Core.Interfaces
 {
     public interface IValidationService
     {
-        Status ValidateNewUser(NewUserModel user);
+        Status ValidateUser(NewUserModel user);
         Status ValidatePassword(string password);
         Status ValidateAuction(NewAuctionModel auction);
         Status ValidateAuction(AuctionDTO auction);

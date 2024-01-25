@@ -21,7 +21,7 @@ namespace Auktionssajt.Core.Services
             return Status.Ok;
         }
 
-        public Status ValidateNewUser(NewUserModel user)
+        public Status ValidateUser(NewUserModel user)
         {
             return Status.Ok;
         }
