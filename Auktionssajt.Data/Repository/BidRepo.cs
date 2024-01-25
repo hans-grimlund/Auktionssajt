@@ -20,6 +20,16 @@ namespace Auktionssajt.Data.Repository
             }
         }
 
+        public BidEntity GetBid(int id)
+        {
+            using SqlConnection conn = new(ConnectionString.str);
+
+            DynamicParameters parameters = new();
+            parameters.Add("@Id", id);
+
+            return conn.QueryFirstOrDefault<BidEntity>("SelectBid", parameters, commandType: CommandType.StoredProcedure)!;
+        }
+
         public List<BidEntity> GetBidsFromAuction(int id)
         {
             using (IDbConnection db = new SqlConnection(ConnectionString.str))

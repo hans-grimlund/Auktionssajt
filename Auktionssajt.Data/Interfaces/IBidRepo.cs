@@ -6,6 +6,7 @@ namespace Auktionssajt.Data.Interfaces
     {
         void InsertBid(BidEntity bid);
         void DeleteBid(int id);
+        BidEntity GetBid(int id);
         List<BidEntity> GetBidsFromAuction(int id);
         List<BidEntity> GetBidsFromUser(int id);
     }

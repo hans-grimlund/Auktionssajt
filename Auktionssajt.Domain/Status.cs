@@ -8,6 +8,8 @@ namespace Auktionssajt.Domain.Models
         Unauthorized,
         BadRequest,
         Forbidden,
+        BidToLow,
+        Closed,
         Error,
     }
 }
