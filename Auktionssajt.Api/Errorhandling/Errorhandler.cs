@@ -1,10 +1,13 @@
 ﻿
 namespace Auktionssajt.Api;
 
-public class Errorhandler() : IErrorhandler
+public class Errorhandler(ILogger<Errorhandler> logger) : IErrorhandler
 {
+    private readonly ILogger<Errorhandler> _logger = logger;
+
     public void LogError(Exception ex)
     {
-        throw new NotImplementedException();
+        _logger.LogError(ex.Message);
+        _logger.LogInformation(ex.StackTrace);
     }
 }
