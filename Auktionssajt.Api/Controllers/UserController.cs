@@ -35,6 +35,26 @@ namespace Auktionssajt.Api.Controllers
             }
         }
 
+        public IActionResult UpdateUser([FromQuery]UpdateUserModel model)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest();
+                
+            try
+            {
+                var status = _userService.UpdateUser(model, GetCurrentUserID());
+                if (status == Status.Ok)
+                    return Ok();
+                
+                return BadRequest(status);
+            }
+            catch (Exception ex)
+            {
+                _errorhandler.LogError(ex);
+                return Problem();
+            }
+        }
+
         [HttpDelete]
         public IActionResult DeleteUser([FromQuery]int id)
         {

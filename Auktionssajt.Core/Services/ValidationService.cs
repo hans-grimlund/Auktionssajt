@@ -26,6 +26,11 @@ namespace Auktionssajt.Core.Services
             return Status.Ok;
         }
 
+        public Status ValidateUser(UpdateUserModel user)
+        {
+            return Status.Ok;
+        }
+
         public Status ValidatePassword(string password)
         {
             return Status.Ok;

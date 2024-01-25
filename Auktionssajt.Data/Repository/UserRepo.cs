@@ -64,7 +64,6 @@ namespace Auktionssajt.Data.Repository
             {
                 var parameters = new DynamicParameters();
                 parameters.Add("@UserID", user.UserID);
-                parameters.Add("@UserName", user.UserName);
                 parameters.Add("@UserPsw", user.UserPsw);
 
                 db.Execute("UpdateUser", parameters, commandType: CommandType.StoredProcedure);

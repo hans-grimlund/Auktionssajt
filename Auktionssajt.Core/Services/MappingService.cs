@@ -128,5 +128,13 @@ namespace Auktionssajt.Core.Services
             }
             return DTOs;
         }
+
+        public UserEntity ToUserEntity(UpdateUserModel model)
+        {
+            return new()
+            {
+                // TODO Code this
+            };
+        }
     }
 }

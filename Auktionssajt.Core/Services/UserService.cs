@@ -23,6 +23,25 @@ namespace Auktionssajt.Core.Services
             return Status.Ok;
         }
 
+        public Status UpdateUser(UpdateUserModel model, int userId)
+        {
+            var user = _userRepo.GetUser(model.UserID);
+            if (user == null)
+                return Status.NotFound;
+            
+            var status = _validationService.ValidateUser(model);
+            if (status != Status.Ok)
+                return status;
+            
+            if (user.UserID != userId)
+                return Status.Unauthorized;
+            
+            var entity = _mappingService.ToUserEntity(model);
+            _userRepo.UpdateUser(entity);
+
+            return Status.Ok;
+        }
+
         public Status DeleteUser(int id, int userId)
         {
             var user = _userRepo.GetUser(id);
