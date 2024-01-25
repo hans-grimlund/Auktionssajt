@@ -9,49 +9,86 @@ namespace Auktionssajt.Api.Controllers
     [Authorize]
     [ApiController]
     [Route("[controller]")]
-    public class BidController : ControllerBase
+    public class BidController(IBidService bidService, IAuctionService auctionService, IErrorhandler errorhandler) : ControllerBase
     {
-        private readonly IBidService _bidService;
-        private readonly IAuctionService _auctionService;
-
-        public BidController(IBidService bidService, IAuctionService auctionService)
-        {
-            _bidService = bidService;
-            _auctionService = auctionService;
-        }
+        private readonly IBidService _bidService = bidService;
+        private readonly IAuctionService _auctionService = auctionService;
+        private readonly IErrorhandler _errorhandler = errorhandler;
 
         [HttpPost]
-        public IActionResult InsertBid([FromQuery]NewBidModel newBid) 
+        public IActionResult PlaceBid([FromQuery]NewBidModel newBid) 
         {
-            var status = _bidService.InsertBid(newBid);
-            if (status == Status.Ok)
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            try
             {
-            return Ok();
+                var status = _bidService.PlaceBid(newBid, GetCurrentUserID());
+                if (status == Status.Ok)
+                    return Ok();
+
+                return BadRequest(status.ToString());    
             }
-            return BadRequest(status.ToString());
+            catch (Exception ex)
+            {
+                _errorhandler.LogError(ex);
+                return Problem();
+            }
         }
+
         [HttpDelete]
-        public IActionResult DeleteBid(int bidID)
+        public IActionResult DeleteBid(int bidId)
         {
-            var status = _bidService.DeleteBid(bidID);
-            if (status == Status.Ok)
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            try
             {
-                return Ok();
+                var status = _bidService.DeleteBid(bidId, GetCurrentUserID());
+                if (status == Status.Ok)
+                    return Ok();
+
+                return BadRequest(status.ToString());
             }
-            return BadRequest(status.ToString());
+            catch (Exception ex)
+            {
+                _errorhandler.LogError(ex);
+                return Problem();
+            }
         }
+
         [HttpGet]
-        public IActionResult GetBidList(int auctionID)
+        public IActionResult GetBids(int auctionID)
         {
-            var bids = _bidService.GetBidList(auctionID);
-            if (!bids.Any())
-            {
-            return Ok(bids);
-            }
+            if (!ModelState.IsValid)
+                return BadRequest();
 
-            return BadRequest(Status.BadRequest);
+            try
+            {
+                var bids = _bidService.GetBids(auctionID);
+                if (bids.Count > 0)
+                    return Ok(bids);
+
+                return BadRequest(Status.BadRequest);
+            }
+            catch (Exception ex)
+            {
+                _errorhandler.LogError(ex);
+                return Problem();
+            }
         }
 
+        private int GetCurrentUserID()
+        {
+            var idClaim = User.FindFirst("UserID");
+            if (idClaim == null)
+                return 0;
 
+            var parsed = int.TryParse(idClaim.Value, out int id);
+            if (parsed)
+                return id;
+
+            return 0;
+        }
     }
 }
