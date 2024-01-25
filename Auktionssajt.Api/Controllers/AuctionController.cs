@@ -97,6 +97,7 @@ namespace Auktionssajt.Api.Controllers
             }
         }
 
+        [HttpGet("getall")]
         public IActionResult GetAllAuctions()
         {
             try
@@ -114,6 +115,7 @@ namespace Auktionssajt.Api.Controllers
             }
         }
 
+        [HttpGet("find")]
         public IActionResult FindAuction([FromQuery]string searchterm)
         {
             if (!ModelState.IsValid)
@@ -134,6 +136,7 @@ namespace Auktionssajt.Api.Controllers
             }
         }
 
+        [HttpGet("user")]
         public IActionResult GetAuctionsFromUser([FromQuery]int id)
         {
             if (!ModelState.IsValid)

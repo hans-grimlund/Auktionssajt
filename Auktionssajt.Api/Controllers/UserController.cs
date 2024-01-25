@@ -35,6 +35,7 @@ namespace Auktionssajt.Api.Controllers
             }
         }
 
+        [HttpPatch]
         public IActionResult UpdateUser([FromQuery]UpdateUserModel model)
         {
             if (!ModelState.IsValid)
@@ -112,7 +113,7 @@ namespace Auktionssajt.Api.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet("username")]
         public IActionResult GetUserFromUsername([FromQuery]string username)
         {       
             try
