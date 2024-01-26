@@ -11,6 +11,5 @@ namespace Auktionssajt.Data.Interfaces
         List<AuctionEntity> FindAuction(string searchterm);
         List<AuctionEntity> GetAllAuctions();
         List<AuctionEntity> GetAuctionsFromUser(int id);
-        List<AuctionEntity> GetAuctionsFromUser(string username);
     }
 }

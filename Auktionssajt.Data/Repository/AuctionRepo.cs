@@ -64,7 +64,7 @@ namespace Auktionssajt.Data.Repository
             DynamicParameters parameters = new();
             parameters.Add("@Id", id);
 
-            return conn.QueryFirstOrDefault<AuctionEntity>("GetAuction", parameters, commandType: System.Data.CommandType.Text)!;
+            return conn.QueryFirstOrDefault<AuctionEntity>("SelectAuction", parameters, commandType: System.Data.CommandType.Text)!;
         }
 
         public List<AuctionEntity> FindAuction(string searchterm)
@@ -84,24 +84,14 @@ namespace Auktionssajt.Data.Repository
             DynamicParameters parameters = new();
             parameters.Add("@Id", id);
 
-            return conn.Query<AuctionEntity>("GetAuctionsFromEmail", parameters, commandType: System.Data.CommandType.Text).ToList();
-        }
-
-        public List<AuctionEntity> GetAuctionsFromUser(string username)
-        {
-            using SqlConnection conn = new(ConnectionString.str);
-
-            DynamicParameters parameters = new();
-            parameters.Add("@Username", username);
-
-            return conn.Query<AuctionEntity>("GetAuctionsFromUsername", parameters, commandType: System.Data.CommandType.Text).ToList();
+            return conn.Query<AuctionEntity>("SelectAuctionsFromUser", parameters, commandType: System.Data.CommandType.Text).ToList();
         }
 
         public List<AuctionEntity> GetAllAuctions()
         {
             using SqlConnection conn = new(ConnectionString.str);
 
-            return conn.Query<AuctionEntity>("GetAllAuctions", commandType: System.Data.CommandType.Text).ToList();
+            return conn.Query<AuctionEntity>("SelectAllAuctions", commandType: System.Data.CommandType.Text).ToList();
         }
     }
 }
