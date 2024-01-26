@@ -22,7 +22,7 @@ namespace Auktionssajt.Data.Repository
         {
             using (IDbConnection db = new SqlConnection(ConnectionString.str))
             {
-                return db.Query<UserEntity>("SelectAllUsers", commandType: CommandType.StoredProcedure).ToList();
+                return db.Query<UserEntity>("GetAllUsers", commandType: CommandType.StoredProcedure).ToList();
             }
         }
         public UserEntity GetUser(int id)
@@ -32,19 +32,8 @@ namespace Auktionssajt.Data.Repository
                 var parameters = new DynamicParameters();
                 parameters.Add("@id", id);
 
-                return db.QueryFirstOrDefault<UserEntity>("SelectUserID", commandType: CommandType.StoredProcedure)!;
+                return db.QueryFirstOrDefault<UserEntity>("GetUserFromId", commandType: CommandType.StoredProcedure)!;
             }
-        }
-        public UserEntity GetUser(string userName)
-        {
-            using (IDbConnection db = new SqlConnection(ConnectionString.str))
-            {
-                var parameters = new DynamicParameters();
-                parameters.Add("@userName", userName);
-
-                return db.QueryFirstOrDefault<UserEntity>("SelectuserName", commandType: CommandType.StoredProcedure)!;
-            }
-
         }
         public void NewUser(UserEntity user)
         {
@@ -54,7 +43,7 @@ namespace Auktionssajt.Data.Repository
                 parameters.Add("@UserName", user.UserName);
                 parameters.Add("@Psw", user.UserPsw);
 
-                db.Execute("InsertAdvertisement", parameters, commandType: CommandType.StoredProcedure);
+                db.Execute("InsertUser", parameters, commandType: CommandType.StoredProcedure);
             }
         }
 
