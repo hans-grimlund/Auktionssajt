@@ -2,7 +2,8 @@ namespace Auktionssajt.Domain.Models
 {
     public class NewUserModel
     {
-        public string UserName { get; set; }
-        public string UserPsw { get; set; }
+        public string Username { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
+
     }
 }

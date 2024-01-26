@@ -1,6 +1,8 @@
 using Auktionssajt.Core.Interfaces;
+using Auktionssajt.Domain;
 using Auktionssajt.Domain.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Auktionssajt.Api.Controllers
@@ -12,6 +14,28 @@ namespace Auktionssajt.Api.Controllers
     {
         private readonly IErrorhandler _errorhandler = errorhandler;
         private readonly IUserService _userService = userService;
+
+        [AllowAnonymous]
+        [HttpGet]
+        public IActionResult Login([FromQuery]LoginRequestModel request)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest();
+                
+            try
+            {
+                var response = _userService.Login(request);
+                if (response.Status == Status.Ok)
+                    return Ok(response.Token);
+                
+                return BadRequest(response.Status);
+            }
+            catch (Exception ex)
+            {
+                _errorhandler.LogError(ex);
+                return Problem();
+            }
+        }
 
         [AllowAnonymous]
         [HttpPost]

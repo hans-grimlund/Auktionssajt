@@ -2,6 +2,7 @@ using Auktionssajt.Core.Interfaces;
 using Auktionssajt.Domain.DTOs;
 using Auktionssajt.Domain.Models;
 using Auktionssajt.Data.Repository;
+using Auktionssajt.Domain;
 
 namespace Auktionssajt.Core.Services
 {
@@ -10,12 +11,29 @@ namespace Auktionssajt.Core.Services
         private readonly UserRepo _userRepo = new();
         private readonly MappingService _mappingService = new();
         private readonly ValidationService _validationService = new();
+        private readonly TokenService _tokenService = new();
+
+        public LoginResponse Login(LoginRequestModel request)
+        {
+            var user = _userRepo.GetUser(request.Username);
+            if (user == null)
+                return new(status: Status.NotFound);
+            
+            if (!BCrypt.Net.BCrypt.EnhancedVerify(request.Password, user.UserPsw))
+                return new(status: Status.Unauthorized);
+
+            var token = _tokenService.GenerateToken(user);
+
+            return new(Status.Ok, token);
+        }
 
         public Status NewUser(NewUserModel user)
         {
             var status = _validationService.ValidateUser(user);
             if (status != Status.Ok)
                 return status;
+
+            user.Password = BCrypt.Net.BCrypt.EnhancedHashPassword(user.Password);
 
             var entity = _mappingService.ToUserEntity(user);
             _userRepo.NewUser(entity);
