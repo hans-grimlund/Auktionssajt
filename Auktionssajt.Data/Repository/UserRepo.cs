@@ -35,6 +35,17 @@ namespace Auktionssajt.Data.Repository
                 return db.QueryFirstOrDefault<UserEntity>("GetUserFromId", commandType: CommandType.StoredProcedure)!;
             }
         }
+
+        public UserEntity GetUser(string username)
+        {
+            using SqlConnection conn = new(ConnectionString.str);
+
+            DynamicParameters parameters = new();
+            parameters.Add("@Username", username);
+            
+            return conn.QueryFirstOrDefault<UserEntity>("SelectUserByUsername", parameters, commandType: CommandType.StoredProcedure)!;
+        }
+
         public void NewUser(UserEntity user)
         {
             using (IDbConnection db = new SqlConnection(ConnectionString.str))
