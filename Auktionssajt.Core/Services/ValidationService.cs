@@ -36,7 +36,7 @@ namespace Auktionssajt.Core.Services
 
         public Status ValidateUser(NewUserModel user)
         {
-            if (user.UserPsw.IsNullOrEmpty() || user.UserName.IsNullOrEmpty())
+            if (user.Username.IsNullOrEmpty() || user.Password.IsNullOrEmpty())
             {
                 return Status.Invalid;
             }
