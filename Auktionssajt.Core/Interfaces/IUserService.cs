@@ -9,7 +9,6 @@ namespace Auktionssajt.Core.Interfaces
         Status UpdateUser(UpdateUserModel model, int userId);
         Status DeleteUser(int id, int userId);
         UserDTO GetUser(int id);
-        UserDTO GetUser(string userName);
         List<UserDTO> GetAllUsers();
     }
 }

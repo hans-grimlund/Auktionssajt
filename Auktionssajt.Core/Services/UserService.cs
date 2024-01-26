@@ -72,14 +72,5 @@ namespace Auktionssajt.Core.Services
             
             return _mappingService.ToUserDTO(entity);
         }
-
-        public UserDTO GetUser(string userName)
-        {
-            var entity = _userRepo.GetUser(userName);
-            if (entity == null)
-                return null!;
-
-            return _mappingService.ToUserDTO(entity);
-        }
     }
 }

@@ -9,29 +9,6 @@ namespace Auktionssajt.Core.Services
     public class MappingService : IMappingService
     {
         private readonly UserRepo _userRepo = new();
-        public AuctionEntity ToAuctionEntity(AuctionDTO DTO)
-        {
-            return new()
-            {
-                Id = DTO.Id,
-                Title = DTO.Title,
-                Description = DTO.Description,
-                UserId = _userRepo.GetUser(DTO.Username).UserID,
-                StartingPrice = DTO.StartingPrice,
-                StartTime = DTO.StartTime,
-                EndTime = DTO.EndTime
-            };
-        }
-
-        public List<AuctionEntity> ToAuctionEntity(List<AuctionDTO> DTOs)
-        {
-            List<AuctionEntity> entities = [];
-            foreach (var DTO in DTOs)
-            {
-                entities.Add(ToAuctionEntity(DTO));
-            }
-            return entities;
-        }
 
         public AuctionDTO ToAuctionDTO(AuctionEntity entity)
         {

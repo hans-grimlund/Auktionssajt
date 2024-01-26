@@ -8,7 +8,6 @@ namespace Auktionssajt.Data.Interfaces
         void DeleteUser(int id);
         void UpdateUser(UserEntity user);
         UserEntity GetUser(int id);
-        UserEntity GetUser(string userName);
         List<UserEntity> GetAllUsers();
     }
 }

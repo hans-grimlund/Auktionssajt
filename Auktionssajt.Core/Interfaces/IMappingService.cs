@@ -13,8 +13,6 @@ namespace Auktionssajt.Core.Interfaces
         AuctionEntity ToAuctionEntity(NewAuctionModel model, int userId = 0);
         AuctionDTO ToAuctionDTO(AuctionEntity entity);
         List<AuctionDTO> ToAuctionDTO(List<AuctionEntity> entities);
-        AuctionEntity ToAuctionEntity(AuctionDTO DTO);
-        List<AuctionEntity> ToAuctionEntity(List<AuctionDTO> DTOs);
         AuctionEntity ToAuctionEntity(EditAuctionModel model);
         BidEntity ToBidEntity(NewBidModel newBid);
         BidDTO ToBidDTO(BidEntity entity);

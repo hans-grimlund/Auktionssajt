@@ -113,24 +113,6 @@ namespace Auktionssajt.Api.Controllers
             }
         }
 
-        [HttpGet("username")]
-        public IActionResult GetUserFromUsername([FromQuery]string username)
-        {       
-            try
-            {
-                var user = _userService.GetUser(username);
-                if (user != null)
-                    return Ok(user);
-                
-                return NotFound();
-            }
-            catch (Exception ex)
-            {
-                _errorhandler.LogError(ex);
-                return Problem();
-            }
-        }
-
         private int GetCurrentUserID()
         {
             var idClaim = User.FindFirst("UserID");
