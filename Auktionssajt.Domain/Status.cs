@@ -11,5 +11,6 @@ namespace Auktionssajt.Domain.Models
         BidToLow,
         Closed,
         Error,
+        Invalid
     }
 }
