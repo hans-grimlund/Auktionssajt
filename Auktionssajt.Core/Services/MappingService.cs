@@ -6,9 +6,10 @@ using Auktionssajt.Domain.Models;
 
 namespace Auktionssajt.Core.Services
 {
-    public class MappingService : IMappingService
+    public class MappingService : IMappingService 
     {
         private readonly UserRepo _userRepo = new();
+        private readonly BidRepo _bidRepo = new();
 
         public AuctionDTO ToAuctionDTO(AuctionEntity entity)
         {
@@ -66,7 +67,8 @@ namespace Auktionssajt.Core.Services
         {
             return new()
             {
-                // TODO Code this
+                UserName = model.Username,
+                UserPsw = model.Password
             };
         }
 
@@ -74,7 +76,7 @@ namespace Auktionssajt.Core.Services
         {
             return new()
             {
-                // TODO Code this
+                UserName = entity.UserName
             };
         }
 
@@ -92,7 +94,11 @@ namespace Auktionssajt.Core.Services
         {
             return new()
             {
-                // TODO Code this
+                BidId = entity.BidId,
+                UserName = _userRepo.GetUser(entity.UserId).UserName,
+                BidPrice = entity.BidPrice,
+                BidDateTime = entity.BidDateTime,
+                AuctionId = entity.AuctionId
             };
         }
 
@@ -110,7 +116,8 @@ namespace Auktionssajt.Core.Services
         {
             return new()
             {
-                // TODO Code this
+                UserID = model.UserID,
+                UserPsw = model.UserPsw
             };
         }
     }
