@@ -16,7 +16,7 @@ namespace Auktionssajt.Api.Controllers
         private readonly IUserService _userService = userService;
 
         [AllowAnonymous]
-        [HttpGet]
+        [HttpGet("login")]
         public IActionResult Login([FromQuery]LoginRequestModel request)
         {
             if (!ModelState.IsValid)
