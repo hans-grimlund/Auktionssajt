@@ -47,7 +47,7 @@ namespace Auktionssajt.Core.Services
             if (user == null)
                 return Status.NotFound;
             
-            var status = _validationService.ValidateUser(model);
+            var status = _validationService.ValidatePassword(model.UserPsw);
             if (status != Status.Ok)
                 return status;
             
