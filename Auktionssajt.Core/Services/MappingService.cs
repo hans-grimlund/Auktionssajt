@@ -9,7 +9,6 @@ namespace Auktionssajt.Core.Services
     public class MappingService : IMappingService 
     {
         private readonly UserRepo _userRepo = new();
-        private readonly BidRepo _bidRepo = new();
 
         public AuctionDTO ToAuctionDTO(AuctionEntity entity)
         {
