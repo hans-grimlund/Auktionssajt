@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auktionssajt.Domain", "Aukt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auktionssajt.Data", "Auktionssajt.Data\Auktionssajt.Data.csproj", "{4400B3C7-4E27-4E12-9DA7-25917F2C8EF5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auktionssajt.UnitTests", "Auktionssajt.UnitTests\Auktionssajt.UnitTests.csproj", "{AB37B52D-A29F-4D2C-B167-CCD38580B44F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{4400B3C7-4E27-4E12-9DA7-25917F2C8EF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4400B3C7-4E27-4E12-9DA7-25917F2C8EF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4400B3C7-4E27-4E12-9DA7-25917F2C8EF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB37B52D-A29F-4D2C-B167-CCD38580B44F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB37B52D-A29F-4D2C-B167-CCD38580B44F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB37B52D-A29F-4D2C-B167-CCD38580B44F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB37B52D-A29F-4D2C-B167-CCD38580B44F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

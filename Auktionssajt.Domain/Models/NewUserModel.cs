@@ -1,9 +1,9 @@
 namespace Auktionssajt.Domain.Models
 {
-    public class NewUserModel
+    public class NewUserModel(string? username = null, string? password = null)
     {
-        public string Username { get; set; } = string.Empty;
-        public string Password { get; set; } = string.Empty;
+        public string Username { get; set; } = username ?? string.Empty;
+        public string Password { get; set; } = password ?? string.Empty;
 
     }
 }
