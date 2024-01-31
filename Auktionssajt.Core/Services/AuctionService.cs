@@ -35,7 +35,7 @@ namespace Auktionssajt.Core.Services
             if (oldAuction.UserID != userId)
                 return Status.Unauthorized;
 
-            if (DateTime.Now > oldAuction.EndTime)
+            if (DateTime.Now < oldAuction.EndTime)
                 return Status.BadRequest;
             
             if (_bidRepo.GetBidsFromAuction(auction.Id).Count > 0)
