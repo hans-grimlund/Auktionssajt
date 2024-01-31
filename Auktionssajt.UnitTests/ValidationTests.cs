@@ -17,6 +17,7 @@ public class ValidationTests
 
         // Assert
         Assert.AreEqual(Status.Ok, result);
+
     }
 
     [TestMethod]
@@ -67,6 +68,15 @@ public class ValidationTests
 
         var result = validationService.ValidateUser(new("stringNotEmpty", "stringNotEmpty"));
         
+        Assert.AreEqual(Status.Ok, result);
+    }
+    [TestMethod]
+    public void ValidateAuction_NotEmpty_ReturnsOk()
+    {
+        var validationService = new ValidationService();
+
+        var result = validationService.ValidateAuction(new NewAuctionModel("stringNotEmpty", "stringNotEmpty", 10));
+
         Assert.AreEqual(Status.Ok, result);
     }
 }
