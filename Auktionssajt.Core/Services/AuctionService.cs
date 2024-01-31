@@ -39,7 +39,7 @@ namespace Auktionssajt.Core.Services
                 return Status.Closed;
             
             if (_bidRepo.GetBidsFromAuction(auction.Id).Count > 0)
-                auction.StartingPrice = oldAuction.StartingPrice;
+                return Status.Forbidden;
 
             var status = _validationService.ValidateAuction(auction);
             if (status != Status.Ok)
