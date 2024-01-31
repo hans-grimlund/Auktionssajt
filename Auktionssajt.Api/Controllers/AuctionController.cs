@@ -76,7 +76,7 @@ namespace Auktionssajt.Api.Controllers
             }
         }
 
-        [HttpPatch]
+        [HttpPatch("close")]
         public IActionResult CloseAuction([FromQuery]int auctionId)
         {
             if (!ModelState.IsValid)
