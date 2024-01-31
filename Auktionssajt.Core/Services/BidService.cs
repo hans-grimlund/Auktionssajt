@@ -23,7 +23,7 @@ namespace Auktionssajt.Core.Services
             if (auction.EndTime < DateTime.Now)
                 return Status.Closed;
 
-            if (bids.Count > 0 && bids.Max(b => b.BidPrice) > newBid.BidPrice)
+            if (bids.Count > 0 && bids.Max(b => b.BidPrice) >= newBid.BidPrice)
                 return Status.BidToLow;
             
             var bidEntity = _mappingService.ToBidEntity(newBid);
