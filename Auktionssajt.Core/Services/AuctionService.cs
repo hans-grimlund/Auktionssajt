@@ -35,8 +35,8 @@ namespace Auktionssajt.Core.Services
             if (oldAuction.UserID != userId)
                 return Status.Unauthorized;
 
-            if (DateTime.Now < oldAuction.EndTime)
-                return Status.BadRequest;
+            if (DateTime.Now > oldAuction.EndTime)
+                return Status.Closed;
             
             if (_bidRepo.GetBidsFromAuction(auction.Id).Count > 0)
                 auction.StartingPrice = oldAuction.StartingPrice;
@@ -44,8 +44,11 @@ namespace Auktionssajt.Core.Services
             var status = _validationService.ValidateAuction(auction);
             if (status != Status.Ok)
                 return status;
-            
-            _auctionRepo.EditAuction(_mappingService.ToAuctionEntity(auction));
+
+            var entity = _mappingService.ToAuctionEntity(auction);
+            entity.UserID = userId;
+
+            _auctionRepo.EditAuction(entity);
             return Status.Ok;
         }
 
