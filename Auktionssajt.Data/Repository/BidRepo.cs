@@ -8,10 +8,8 @@ namespace Auktionssajt.Data.Repository
 {
     public class BidRepo : IBidRepo
     {
-
         public void DeleteBid(int id)
         {
-
             using (IDbConnection db = new SqlConnection(ConnectionString.str))
             {
                 string sql = "DeleteBid";
