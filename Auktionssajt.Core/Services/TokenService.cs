@@ -9,7 +9,6 @@ namespace Auktionssajt.Core.Services
 {
     public class TokenService : ITokenService
     {
-
         public string GenerateToken(UserEntity user)
         {
             
@@ -28,8 +27,7 @@ namespace Auktionssajt.Core.Services
                 expires: DateTime.Now.AddDays(30),
                 signingCredentials: credentials);
 
-            return new JwtSecurityTokenHandler().WriteToken(token);
-            
+            return new JwtSecurityTokenHandler().WriteToken(token);           
         }
     }
 }

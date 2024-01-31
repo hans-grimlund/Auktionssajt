@@ -9,7 +9,6 @@ namespace Auktionssajt.Core.Services
     public class MappingService : IMappingService 
     {
         private readonly UserRepo _userRepo = new();
-
         public AuctionDTO ToAuctionDTO(AuctionEntity entity)
         {
             return new()
@@ -58,8 +57,7 @@ namespace Auktionssajt.Core.Services
 
         public BidEntity ToBidEntity(NewBidModel newBid)
         {
-            return new BidEntity(0, newBid.BidPrice, auctionId: newBid.AuctionID);
-           
+            return new BidEntity(0, newBid.BidPrice, auctionId: newBid.AuctionID);      
         }
 
         public UserEntity ToUserEntity(NewUserModel model)

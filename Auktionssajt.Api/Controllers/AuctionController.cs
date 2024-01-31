@@ -156,7 +156,6 @@ namespace Auktionssajt.Api.Controllers
                 return Problem();
             }
         }
-
         private int GetCurrentUserID()
         {
             var idClaim = User.FindFirst("UserID");

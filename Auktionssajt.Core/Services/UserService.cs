@@ -59,7 +59,6 @@ namespace Auktionssajt.Core.Services
 
             return Status.Ok;
         }
-
         public Status DeleteUser(int id, int userId)
         {
             var user = _userRepo.GetUser(id);
