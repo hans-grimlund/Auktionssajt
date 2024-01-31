@@ -14,7 +14,7 @@ namespace Auktionssajt.Api.Controllers
         private readonly IErrorhandler _errorhandler = errorhandler;
 
         [HttpPost]
-        public IActionResult CreateAuction(NewAuctionModel newAuction)
+        public IActionResult CreateAuction([FromQuery]NewAuctionModel newAuction)
         {
             if (!ModelState.IsValid)
                 return BadRequest();

@@ -2,8 +2,19 @@
 
 namespace Auktionssajt.Domain;
 
-public class LoginResponse(Status? status = null, string? token = null)
+public class LoginResponse
 {
-    public Status Status { get; set; } = status ?? Status.None;
-    public string Token { get; set; } = token ?? string.Empty;
+    public Status Status { get; set; }
+    public string Token { get; set; }
+    
+    public LoginResponse(Status? status = null, string? token = null)
+    {
+        Status = status ?? Status.None;
+        Token = token ?? string.Empty;
+    }
+
+    public LoginResponse()
+    {
+        Token ??= string.Empty;
+    }
 }

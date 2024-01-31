@@ -29,7 +29,7 @@ public class Program
                 ValidateIssuerSigningKey = true,
                 ValidIssuer = "http://localhost:5002/",
                 ValidAudience = "http://localhost:5002/",
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("oefnieinfmdjkskaldndj12jdh")),
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("bGEPiWwrvQR1REZdXgw1QE9wbwi1V3BFn5qV9iT5BGStYhpMyG")),
             };
         });
         builder.Services.AddControllers();

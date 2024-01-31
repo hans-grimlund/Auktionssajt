@@ -37,7 +37,7 @@ namespace Auktionssajt.Api.Controllers
         }
 
         [HttpDelete]
-        public IActionResult DeleteBid(int bidId)
+        public IActionResult DeleteBid([FromQuery]int bidId)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
@@ -58,7 +58,7 @@ namespace Auktionssajt.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetBids(int auctionID)
+        public IActionResult GetBids([FromQuery]int auctionID)
         {
             if (!ModelState.IsValid)
                 return BadRequest();

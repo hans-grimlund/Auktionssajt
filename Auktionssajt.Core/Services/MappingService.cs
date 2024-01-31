@@ -75,6 +75,7 @@ namespace Auktionssajt.Core.Services
         {
             return new()
             {
+                UserID = entity.UserID,
                 UserName = entity.UserName
             };
         }
@@ -115,8 +116,7 @@ namespace Auktionssajt.Core.Services
         {
             return new()
             {
-                UserID = model.UserID,
-                UserPsw = model.UserPsw
+                UserPsw = model.NewPassword
             };
         }
     }

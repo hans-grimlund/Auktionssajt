@@ -43,16 +43,16 @@ namespace Auktionssajt.Core.Services
 
         public Status UpdateUser(UpdateUserModel model, int userId)
         {
-            var user = _userRepo.GetUser(model.UserID);
+            var user = _userRepo.GetUser(userId);
             if (user == null)
                 return Status.NotFound;
             
-            var status = _validationService.ValidatePassword(model.UserPsw);
+            if (user.UserID != userId)
+                return Status.Unauthorized;    
+                
+            var status = _validationService.ValidatePassword(model.NewPassword);
             if (status != Status.Ok)
                 return status;
-            
-            if (user.UserID != userId)
-                return Status.Unauthorized;
             
             var entity = _mappingService.ToUserEntity(model);
             _userRepo.UpdateUser(entity);

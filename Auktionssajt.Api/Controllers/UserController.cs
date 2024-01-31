@@ -28,7 +28,7 @@ namespace Auktionssajt.Api.Controllers
                 if (response.Status == Status.Ok)
                     return Ok(response.Token);
                 
-                return BadRequest(response.Status);
+                return BadRequest(response.Status.ToString());
             }
             catch (Exception ex)
             {
@@ -39,7 +39,7 @@ namespace Auktionssajt.Api.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        public IActionResult NewUser([FromBody]NewUserModel user)
+        public IActionResult NewUser([FromQuery]NewUserModel user)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
@@ -50,7 +50,7 @@ namespace Auktionssajt.Api.Controllers
                 if (status == Status.Ok)
                     return Ok();
                 
-                return BadRequest(status);
+                return BadRequest(status.ToString());
             }
             catch (Exception ex)
             {
@@ -71,7 +71,7 @@ namespace Auktionssajt.Api.Controllers
                 if (status == Status.Ok)
                     return Ok();
                 
-                return BadRequest(status);
+                return BadRequest(status.ToString());
             }
             catch (Exception ex)
             {
@@ -92,7 +92,7 @@ namespace Auktionssajt.Api.Controllers
                 if (status == Status.Ok)
                     return Ok();
                 
-                return BadRequest(status);
+                return BadRequest(status.ToString());
             }
             catch (Exception ex)
             {
