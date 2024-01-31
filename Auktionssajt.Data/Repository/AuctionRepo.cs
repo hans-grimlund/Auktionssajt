@@ -2,6 +2,7 @@ using Auktionssajt.Data.Interfaces;
 using Auktionssajt.Domain.Entities;
 using Dapper;
 using Microsoft.Data.SqlClient;
+using System.Data;
 
 namespace Auktionssajt.Data.Repository
 {
@@ -19,7 +20,7 @@ namespace Auktionssajt.Data.Repository
             parameters.Add("@StartTime", DateTime.Now);
             parameters.Add("@EndTime", auction.EndTime);
 
-            conn.Execute("InsertAuction", parameters, commandType: System.Data.CommandType.Text);
+            conn.Execute("InsertAuction", parameters, commandType: CommandType.StoredProcedure);
         }
 
         public void EditAuction(AuctionEntity auction)
@@ -33,7 +34,7 @@ namespace Auktionssajt.Data.Repository
             parameters.Add("@UserId", auction.UserId);
             parameters.Add("@StartingPrice", auction.StartingPrice);
 
-            conn.Execute("UpdateAuction", parameters, commandType: System.Data.CommandType.Text);
+            conn.Execute("UpdateAuction", parameters, commandType: CommandType.StoredProcedure);
         }
 
         public void DeleteAuction(int id)
@@ -43,7 +44,7 @@ namespace Auktionssajt.Data.Repository
             DynamicParameters parameters = new();
             parameters.Add("@Id", id);
 
-            conn.Execute("DeleteAuction", parameters, commandType: System.Data.CommandType.Text);
+            conn.Execute("DeleteAuction", parameters, commandType: CommandType.StoredProcedure);
         }
 
         public void CloseAuction(int id)
@@ -54,7 +55,7 @@ namespace Auktionssajt.Data.Repository
             parameters.Add("@Id", id);
             parameters.Add("@EndTime", DateTime.Now);
 
-            conn.Execute("CloseAuction", parameters, commandType: System.Data.CommandType.StoredProcedure);
+            conn.Execute("CloseAuction", parameters, commandType: CommandType.StoredProcedure);
         }
 
         public AuctionEntity GetAuction(int id)
@@ -64,7 +65,7 @@ namespace Auktionssajt.Data.Repository
             DynamicParameters parameters = new();
             parameters.Add("@Id", id);
 
-            return conn.QueryFirstOrDefault<AuctionEntity>("GetAuction", parameters, commandType: System.Data.CommandType.Text)!;
+            return conn.QueryFirstOrDefault<AuctionEntity>("GetAuction", parameters, commandType: CommandType.StoredProcedure)!;
         }
 
         public List<AuctionEntity> FindAuction(string searchterm)
@@ -74,7 +75,7 @@ namespace Auktionssajt.Data.Repository
             DynamicParameters parameters = new();
             parameters.Add("@Searchterm", searchterm);
 
-            return conn.Query<AuctionEntity>("FindAuction", parameters, commandType: System.Data.CommandType.StoredProcedure).ToList();
+            return conn.Query<AuctionEntity>("FindAuction", parameters, commandType: CommandType.StoredProcedure).ToList();
         }
 
         public List<AuctionEntity> GetAuctionsFromUser(int id)
@@ -84,14 +85,14 @@ namespace Auktionssajt.Data.Repository
             DynamicParameters parameters = new();
             parameters.Add("@Id", id);
 
-            return conn.Query<AuctionEntity>("GetAuctionsFromUser", parameters, commandType: System.Data.CommandType.Text).ToList();
+            return conn.Query<AuctionEntity>("GetAuctionsFromUser", parameters, commandType: CommandType.StoredProcedure).ToList();
         }
 
         public List<AuctionEntity> GetAllAuctions()
         {
             using SqlConnection conn = new(ConnectionString.str);
 
-            return conn.Query<AuctionEntity>("GetAllAuctions", commandType: System.Data.CommandType.Text).ToList();
+            return conn.Query<AuctionEntity>("GetAllAuctions", commandType: CommandType.StoredProcedure).ToList();
         }
     }
 }
