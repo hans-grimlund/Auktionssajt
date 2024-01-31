@@ -52,6 +52,9 @@ namespace Auktionssajt.Core.Services
         public Status CloseAuction(int auctionId, int userId)
         {
             var auction = _auctionRepo.GetAuction(auctionId);
+            if (auction == null)
+                return Status.NotFound;
+
             if (auction.UserID != userId)
                 return Status.Unauthorized;
             
