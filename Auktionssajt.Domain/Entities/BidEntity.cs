@@ -4,16 +4,21 @@ namespace Auktionssajt.Domain.Entities
     {
         public int BidId { get; set; }
         public decimal BidPrice { get; set; }
-        public DateTime BidDateTime { get; set; }
         public int AuctionId { get; set; }
         public int UserId { get; set; }
+        public DateTime Placed { get; set; }
 
-        public BidEntity(int bidId, decimal bidPrice, int auctionId, DateTime? bidDateTime = null)
+        public BidEntity(int bidId, decimal bidPrice, int auctionId, int userId = 0, DateTime? Placed = null)
         {
             BidId = bidId;
             BidPrice = bidPrice;
-            BidDateTime = bidDateTime ?? DateTime.MinValue;
             AuctionId = auctionId;
+            UserId = userId;
+            Placed = Placed ?? DateTime.MinValue;
+        }
+        public BidEntity()
+        {
+            
         }
     }
 }

@@ -32,7 +32,7 @@ namespace Auktionssajt.Core.Services
             if (oldAuction == null)
                 return Status.NotFound;
             
-            if (oldAuction.UserId != userId)
+            if (oldAuction.UserID != userId)
                 return Status.Unauthorized;
 
             if (DateTime.Now > oldAuction.EndTime)
@@ -52,7 +52,7 @@ namespace Auktionssajt.Core.Services
         public Status CloseAuction(int auctionId, int userId)
         {
             var auction = _auctionRepo.GetAuction(auctionId);
-            if (auction.UserId != userId)
+            if (auction.UserID != userId)
                 return Status.Unauthorized;
             
             if (DateTime.Now > auction.EndTime)

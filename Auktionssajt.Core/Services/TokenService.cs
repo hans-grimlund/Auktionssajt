@@ -25,7 +25,7 @@ namespace Auktionssajt.Core.Services
                 issuer: "http://localhost:5002/",
                 audience: "http://localhost:5002/",
                 claims: claims,
-                expires: DateTime.Now.AddMinutes(10),
+                expires: DateTime.Now.AddDays(30),
                 signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler().WriteToken(token);

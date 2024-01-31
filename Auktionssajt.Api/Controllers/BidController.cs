@@ -66,10 +66,10 @@ namespace Auktionssajt.Api.Controllers
             try
             {
                 var bids = _bidService.GetBids(auctionID);
-                if (bids.Count > 0)
+                if (bids != null)
                     return Ok(bids);
 
-                return BadRequest(Status.BadRequest);
+                return NotFound();
             }
             catch (Exception ex)
             {

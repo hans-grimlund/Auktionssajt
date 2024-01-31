@@ -16,7 +16,7 @@ namespace Auktionssajt.Data.Repository
             {
                 string sql = "DeleteBid";
 
-                db.Execute(sql, new { @id = id }, commandType: CommandType.StoredProcedure);
+                db.Execute(sql, new { @BidId = id }, commandType: CommandType.StoredProcedure);
             }
         }
 
@@ -63,6 +63,7 @@ namespace Auktionssajt.Data.Repository
                 parameters.Add("@UserID", bid.UserId);
                 parameters.Add("@BidPrice", bid.BidPrice);
                 parameters.Add("@AuctionId", bid.AuctionId);
+                parameters.Add("@Placed", bid.Placed);
 
 
                 db.Execute(sql, parameters, commandType: CommandType.StoredProcedure);

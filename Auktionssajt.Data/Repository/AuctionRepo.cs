@@ -15,7 +15,7 @@ namespace Auktionssajt.Data.Repository
             DynamicParameters parameters = new();
             parameters.Add("@Title", auction.Title);
             parameters.Add("@Description", auction.Description);
-            parameters.Add("@UserId", auction.UserId);
+            parameters.Add("@UserId", auction.UserID);
             parameters.Add("@StartingPrice", auction.StartingPrice);
             parameters.Add("@StartTime", DateTime.Now);
             parameters.Add("@EndTime", auction.EndTime);
@@ -31,7 +31,7 @@ namespace Auktionssajt.Data.Repository
             parameters.Add("@Id", auction.Id);
             parameters.Add("@Title", auction.Title);
             parameters.Add("@Description", auction.Description);
-            parameters.Add("@UserId", auction.UserId);
+            parameters.Add("@UserId", auction.UserID);
             parameters.Add("@StartingPrice", auction.StartingPrice);
 
             conn.Execute("UpdateAuction", parameters, commandType: CommandType.StoredProcedure);

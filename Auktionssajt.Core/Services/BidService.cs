@@ -17,16 +17,18 @@ namespace Auktionssajt.Core.Services
         {
             var auction = _auctionRepo.GetAuction(newBid.AuctionID);
             var bids = _bidRepo.GetBidsFromAuction(newBid.AuctionID);
-            if (auction.UserId == userId)
+            if (auction.UserID == userId)
                 return Status.Forbidden;
             
             if (auction.EndTime < DateTime.Now)
                 return Status.Closed;
 
-            if (bids.Max(b => b.BidPrice) > newBid.BidPrice)
+            if (bids.Count > 0 && bids.Max(b => b.BidPrice) > newBid.BidPrice)
                 return Status.BidToLow;
             
             var bidEntity = _mappingService.ToBidEntity(newBid);
+            bidEntity.UserId = userId;
+            bidEntity.Placed = DateTime.Now;
             _bidRepo.InsertBid(bidEntity);
 
             return Status.Ok;
@@ -41,7 +43,7 @@ namespace Auktionssajt.Core.Services
                 return Status.NotFound;
 
             var auction = _auctionRepo.GetAuction(bid.AuctionId);
-            if (auction.EndTime > DateTime.Now)
+            if (auction.EndTime < DateTime.Now)
                 return Status.Closed;
             
             if (bid.UserId != userId)

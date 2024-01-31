@@ -17,7 +17,7 @@ namespace Auktionssajt.Core.Services
                 Id = entity.Id,
                 Title = entity.Title,
                 Description = entity.Description,
-                Username = _userRepo.GetUser(entity.UserId).UserName,
+                Username = _userRepo.GetUser(entity.UserID).UserName,
                 StartingPrice = entity.StartingPrice,
                 StartTime = entity.StartTime,
                 EndTime = entity.EndTime
@@ -51,7 +51,7 @@ namespace Auktionssajt.Core.Services
             {
                 Title = model.Title,
                 Description = model.Description,
-                UserId = userId,
+                UserID = userId,
                 StartingPrice = model.StartingPrice
             };
         }
@@ -97,7 +97,7 @@ namespace Auktionssajt.Core.Services
                 BidId = entity.BidId,
                 UserName = _userRepo.GetUser(entity.UserId).UserName,
                 BidPrice = entity.BidPrice,
-                BidDateTime = entity.BidDateTime,
+                Placed = entity.Placed,
                 AuctionId = entity.AuctionId
             };
         }
