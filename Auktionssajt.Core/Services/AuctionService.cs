@@ -69,14 +69,14 @@ namespace Auktionssajt.Core.Services
         {
             var auction = _auctionRepo.GetAuction(id);
             if (auction == null)
-                return new();
+                return null!;
             return _mappingService.ToAuctionDTO(auction);
         }
 
         public List<AuctionDTO> FindAuction(string searchterm)
         {
             if (searchterm == null)
-                return [];
+                return null!;
             
             var entities = _auctionRepo.FindAuction(searchterm);
             if (entities.Count < 1)
@@ -88,7 +88,7 @@ namespace Auktionssajt.Core.Services
         {
             var entities = _auctionRepo.GetAllAuctions();
             if (entities.Count < 1)
-                return [];
+                return null!;
             return _mappingService.ToAuctionDTO(entities);
         }
 
@@ -96,7 +96,7 @@ namespace Auktionssajt.Core.Services
         {
             var entities = _auctionRepo.GetAuctionsFromUser(id);
             if (entities.Count < 1)
-                return [];
+                return null!;
             return _mappingService.ToAuctionDTO(entities);
         }
     }
