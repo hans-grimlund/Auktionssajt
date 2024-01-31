@@ -80,7 +80,7 @@ namespace Auktionssajt.Core.Services
             
             var entities = _auctionRepo.FindAuction(searchterm);
             if (entities.Count < 1)
-                return [];
+                return null!;
             return _mappingService.ToAuctionDTO(entities);
         }
 
